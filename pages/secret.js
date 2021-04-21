@@ -1,29 +1,20 @@
-import { useUser } from '@auth0/nextjs-auth0';
-import BaseLayout from "@/components/layouts/BaseLayout";
+import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from "@/components/BasePage";
-import Redirect from '@/components/shared/Redirect';
+import withAuth from '@/hoc/withAuth';
 
-const Secret = () => {
-  const { user, isLoading } = useUser();
-
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-
-  if (!user) {
-    return <Redirect to="/api/auth/login" />;
-  }
+const Secret = ({user, loading}) => {
 
   return (
     <BaseLayout
       user={user}
-      loading={isLoading}
+      loading={loading}
     >
       <BasePage>
-        <h1>I Secret page</h1>
+        <h1>I Secret page hello {user.name}</h1>
+        <img src={user.picture} alt={user.name} />
       </BasePage>
     </BaseLayout>
   )
 }
 
-export default Secret;
+export default withAuth(Secret);
