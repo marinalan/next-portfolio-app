@@ -26,14 +26,13 @@ const LogoutLink = () =>
   <BsNavLink href="/api/auth/logout" title="Logout" />
   //<span className="nav-link port-navbar-link clickable">Logout</span>
 
-const Header = ({user, loading}) => {
+const Header = ({user, loading, className}) => {
   const [isOpen, setIsOpen ] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   return (
     <div>
       <Navbar
-        className="port-navbar port-default absolute"
-        color="transparent"
+        className={`port-navbar port-default absolute ${className}`}
         dark
         expand="md">
         <div className="navbar-brand">
@@ -60,6 +59,9 @@ const Header = ({user, loading}) => {
               <BsNavLink href="/cv" title="Cv" />
             </NavItem>
             <NavItem className="port-navbar-item">
+              <BsNavLink href="/portfolios/new" title="Add portfolio" />
+            </NavItem>
+            {/*<NavItem className="port-navbar-item">
               <BsNavLink href="/secret" title="Secret" />
             </NavItem>
             <NavItem className="port-navbar-item">
@@ -68,6 +70,9 @@ const Header = ({user, loading}) => {
             <NavItem className="port-navbar-item">
               <BsNavLink href="/onlyadmin" title="Admin" />
             </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/onlyadminssr" title="AdminSSR" />
+            </NavItem> */}
           </Nav>
           <Nav navbar>
             { !loading && 
