@@ -3,12 +3,13 @@ import BaseLayout from "@/components/layouts/BaseLayout";
 import BasePage from "@/components/BasePage";
 import PortfolioForm from '@/components/PortfolioForm';
 import withAuth from '@/hoc/withAuth';
+import { useCreatePortfolio } from '@/actions/portfolios';
+import Redirect from '@/components/shared/Redirect';
 
 const PortfolioNew = ({user, loading: userLoading}) => {
+  const [createPortfolio, {data, loading, error}] = useCreatePortfolio();
 
-  const createPortfolio = data => {
-    alert(JSON.stringify(data));
-  };
+  if (data) { return <Redirect to="/portfolios" /> }
 
   return (
     <BaseLayout
@@ -19,6 +20,7 @@ const PortfolioNew = ({user, loading: userLoading}) => {
         <Row>
           <Col md="8">
             <PortfolioForm onSubmit={createPortfolio} />
+            { error && <div className="alert alert-danger">{error}</div> }
           </Col>
         </Row>
       </BasePage>

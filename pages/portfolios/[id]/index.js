@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
+import Link from "next/link";
 import BaseLayout from "@/components/layouts/BaseLayout";
 import BasePage from "@/components/BasePage";
 import PortfolioApi from '@/lib/api/portfolios';
@@ -17,6 +18,10 @@ const Portfolio = ({portfolio}) => {
         {
           JSON.stringify(portfolio)
         }
+
+        <Link href={`/portfolios/${portfolio._id}/edit`}>
+          <a className="nav-link port-navbar-link">Edit</a>
+        </Link>
       </BasePage>
     </BaseLayout>
   )
