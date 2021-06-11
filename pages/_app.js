@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/styles/main.scss';
+import '@/styles/editor.css';
 
 function MyApp({ Component, pageProps }) {
 
