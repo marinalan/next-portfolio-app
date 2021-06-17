@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { Row, Col } from 'reactstrap';
 import BaseLayout from "@/components/layouts/BaseLayout";
 import BasePage from "@/components/BasePage";
 import withAuth from '@/hoc/withAuth';
@@ -30,12 +31,16 @@ const BlogUpdateEditor = ({user, loading}) => {
     >
       <BasePage>
 			{ data && data.content &&
-        <Editor 
-				  header="Update Your Blog..."
-					initialContent={data.content}
-					onSave={_updateBlog}
-					loading={isBlogSaving}
-			  />
+				<Row>
+					<Col md={{size: 8, offset: 2}}>
+						<Editor 
+							header="Update Your Blog..."
+							initialContent={data.content}
+							onSave={_updateBlog}
+							loading={isBlogSaving}
+						/>
+					</Col>
+				</Row>
 			}
       </BasePage>
     </BaseLayout>

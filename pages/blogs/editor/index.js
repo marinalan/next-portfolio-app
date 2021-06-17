@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { Row, Col } from 'reactstrap';
 import BaseLayout from "@/components/layouts/BaseLayout";
 import BasePage from "@/components/BasePage";
 import withAuth from '@/hoc/withAuth';
@@ -26,10 +27,14 @@ const BlogEditor = ({user, loading}) => {
       loading={loading}
     >
       <BasePage>
-        <Editor 
-					onSave={saveBlog}
-					loading={blogLoading}
-			  />
+				<Row>
+					<Col md={{size: 8, offset: 2}}>
+						<Editor 
+							onSave={saveBlog}
+							loading={blogLoading}
+						/>
+					</Col>
+				</Row>
       </BasePage>
     </BaseLayout>
   )
