@@ -25,6 +25,16 @@ html, body {
   letter-spacing: 2px;
 }
 
+.avatar-box {
+	img {
+		height: 50px;
+		border-radius: 50%;
+	}
+
+	.subtitle {
+		font-size: 14px;
+	}
+}
 .clickable {
   cursor: pointer;
 }

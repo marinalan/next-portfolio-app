@@ -27,6 +27,7 @@ const Portfolios = ({portfolios: initialPortfolios}) => {
   return (
     <BaseLayout user={user} loading={isLoading}>
       <BasePage 
+				title="Newest Portfolios - Marina Landisberg"
         header="Portfolios"
         className="portfolio-page"
       >

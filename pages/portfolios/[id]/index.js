@@ -6,15 +6,18 @@ import BasePage from "@/components/BasePage";
 import PortfolioApi from '@/lib/api/portfolios';
 
 const Portfolio = ({portfolio}) => {
-  const router = useRouter();
   const { user, isLoading } = useUser();
 
+	// TODO: Provide proper stylings!!!
   return (
     <BaseLayout
       user={user}
       loading={isLoading}
     >
-      <BasePage header="Portfolio Detail">
+      <BasePage 
+				title={`${portfolio.title}`}
+				header="Portfolio Detail"
+			>
         {
           JSON.stringify(portfolio)
         }

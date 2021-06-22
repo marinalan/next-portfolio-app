@@ -4,17 +4,27 @@ import BaseLayout from "@/components/layouts/BaseLayout";
 import BasePage from "@/components/BasePage";
 import BlogApi from '@/lib/api/blogs';
 import SlateView from '@/lib/editor/ReadOnly';
+import Avatar from '@/components/shared/Avatar';
 
-const BlogDetail = ({blog}) => {
+const BlogDetail = ({blog, author}) => {
   const { user, isLoading } = useUser();
   return (
     <BaseLayout
       user={user}
       loading={isLoading}
     >
-      <BasePage className="slate-container">
+      <BasePage
+				title={`${blog.title}`} 
+				className="slate-container"
+			>
         <Row>
 					<Col md={{size: 8, offset: 2}}>
+						<Avatar 
+						  image={author.picture}
+							title={author.name}
+							date={blog.createdAt}
+						/>
+						<hr/>
 						<SlateView initialContent={blog.content}/>
 					</Col>
 				</Row>
@@ -24,15 +34,14 @@ const BlogDetail = ({blog}) => {
 }
 
 export async function getStaticPaths() {
-	const json = await new BlogApi().getAll();
-	const blogs = json.data;
-	const paths = blogs.map(b => ({ params: {slug: b.slug} }));
+	const { data } = await new BlogApi().getAll();
+	const paths = data.map(({blog}) => ({ params: {slug: blog.slug} }));
 	return { paths, fallback: false };
 }
 
 export async function getStaticProps({params}) {
-	const json = await new BlogApi().getBySlug(params.slug);
-	return {props: {blog: json.data}};
+	const { data: {blog, author}} = await new BlogApi().getBySlug(params.slug);
+	return {props: {blog, author}};
 }
 
 export default BlogDetail;
