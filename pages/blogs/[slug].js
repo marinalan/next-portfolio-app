@@ -16,6 +16,7 @@ const BlogDetail = ({blog, author}) => {
       <BasePage
 				title={`${blog.title}`} 
 				className="slate-container"
+				metaDescription={blog.subTitle?.substr(0, 150)}
 			>
         <Row>
 					<Col md={{size: 8, offset: 2}}>

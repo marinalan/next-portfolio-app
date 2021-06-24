@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
-import Link from "next/link";
 import BaseLayout from "@/components/layouts/BaseLayout";
 import BasePage from "@/components/BasePage";
 import PortfolioApi from '@/lib/api/portfolios';
+import { formatDate } from'@/helpers/functions';
 
 const Portfolio = ({portfolio}) => {
   const { user, isLoading } = useUser();
@@ -13,18 +13,27 @@ const Portfolio = ({portfolio}) => {
     <BaseLayout
       user={user}
       loading={isLoading}
+			navClass="transparent"
     >
       <BasePage 
+			  noWrapper
+			  indexPage
 				title={`${portfolio.title}`}
-				header="Portfolio Detail"
+				metaDescription={portfolio.description.substr(0, 150)}
 			>
-        {
-          JSON.stringify(portfolio)
-        }
-
-        <Link href={`/portfolios/${portfolio._id}/edit`}>
-          <a className="nav-link port-navbar-link">Edit</a>
-        </Link>
+        <div className="portfolio-detail">
+					<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+						<main role="main" class="inner page-cover">
+							<h1 class="cover-heading">{portfolio.title}</h1>
+							<p class="lead dates">{formatDate(portfolio.startDate)}-{formatDate(portfolio.endDate) || 'Present'}</p>
+							<p class="lead info mb-0">{portfolio.jobTitle} | {portfolio.company} | {portfolio.location}</p>
+							<p class="lead">{portfolio.description}</p>
+							<p class="lead">
+								<a href={portfolio.companyWebsite} target="_blank" class="btn btn-lg btn-secondary">Visit Company</a>
+							</p>
+						</main>
+					</div>
+				</div>
       </BasePage>
     </BaseLayout>
   )

@@ -4,9 +4,11 @@
 }
 
 .flipper {
+	height: 100%;
   transition: 1s;
   transform-style: preserve-3d;
   position: relative;
+	margin-right: 10px;
 }
 
 .flipper.isFlipping {
@@ -14,6 +16,8 @@
 }
 
 .front, .back {
+	width: 100%;
+	height: 100%;
   backface-visibility: hidden;
   position: absolute;
   top: 0;
@@ -48,7 +52,8 @@
 }
 
 .hero-section{
-	height: 427px;
+	height: 530px;
+	width: 400px;
 	margin-bottom: 25px;
 	margin-left: auto;
 	margin-right: auto;
@@ -67,19 +72,31 @@
   &-content {
     position: absolute;
     bottom: 20px;
-    width: 360px;
+    width: 100%;
+		padding: 20px;
     left: 6%;
     z-index: 1;
 
     &-intro {
       font-size: 17px;
+			padding: 20px;
     }
   }
 }
 
 .image {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.image-1 {
+	background-image: url('/images/section-1.jpg');
+}
+
+.image-2 {
+	background-image: url('/images/section-2.jpg');
 }
 
 .hero-welcome-text > h1 {
@@ -87,6 +104,7 @@
   text-transform: uppercase;
   font-size: 27px;
   margin-top: 80px;
+	font-weight: 300;
 }
 
 .hero-welcome-bio {
@@ -117,12 +135,12 @@
 
 @media (max-width: 850px) {
   .hero-section {
-    width: 341px;
+    width: 400px;
 		margin-left: auto;
 		margin-right: auto;
 
     &-content {
-      width: 341px;
+      width: 400px;
     }
   }
 }
