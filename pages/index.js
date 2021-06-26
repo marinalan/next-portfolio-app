@@ -1,29 +1,30 @@
-import {useState, useRef }  from 'react';
+import {useState, useRef, useEffect }  from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Typed from "react-typed";
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from "@/components/BasePage";
 //import { useGetUser } from '@/actions/user';
 import { useUser } from '@auth0/nextjs-auth0';
-import { useEffect } from 'react/cjs/react.development';
+//import { useEffect } from 'react/cjs/react.development';
 
 const roles = ["Developer", "Tech Lover", "Team Player", "React JS", "Angular"];
 const Index = () => {
 	const [isFlipping, setIsFlipping] = useState(false);
-  const { user, error, isLoading } = useUser();
-  //const { data, error, loading } = useGetUser();
 	const flipInterval = useRef();
-
-	useEffect(() => {
-		startAnimation();
-		return () => flipInterval.current && clearInterval(flipInterval.current)
-	}, []);
 
 	const startAnimation = () => {
 		flipInterval.current = setInterval(() => {
 			setIsFlipping(prevFlipping => !prevFlipping);
-		}, 20000);
+		}, 3000);
 	};
+	
+	useEffect(() => {
+		startAnimation();
+		return () => { return flipInterval.current && clearInterval(flipInterval.current);}
+	}, []);
+
+  const { user, error, isLoading } = useUser();
+  //const { data, error, loading } = useGetUser();
 
   return (
     <BaseLayout 

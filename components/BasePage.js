@@ -36,7 +36,7 @@ const BasePage = props => {
 				<meta property="og:type" key="og:type" content="website" />
 				<meta property="og:description" key="og:description" content={metaDescription} />
 				<meta property="og:image" key="og:image" content={`${process.env.BASE_URL}/images/section-1.png`} />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
 				<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&amp;display=swap" rel="stylesheet" />
 				<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
 				<link 
