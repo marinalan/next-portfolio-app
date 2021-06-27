@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
 import { Row, Col } from 'reactstrap';
 import BaseLayout from "@/components/layouts/BaseLayout";
@@ -7,6 +8,11 @@ import SlateView from '@/lib/editor/ReadOnly';
 import Avatar from '@/components/shared/Avatar';
 
 const BlogDetail = ({blog, author}) => {
+	const router = useRouter();
+
+	if (router.isFallback) {
+		return <h1>Your page is getting server</h1>
+	}
   const { user, isLoading } = useUser();
   return (
     <BaseLayout
@@ -37,7 +43,7 @@ const BlogDetail = ({blog, author}) => {
 export async function getStaticPaths() {
 	const { data } = await new BlogApi().getAll();
 	const paths = data.map(({blog}) => ({ params: {slug: blog.slug} }));
-	return { paths, fallback: false };
+	return { paths, fallback: true };
 }
 
 export async function getStaticProps({params}) {
