@@ -16,7 +16,7 @@ const BasePage = props => {
 		className = '', 
 		header, 
 		title = 'Portfolio - Marina Landisberg', 
-		metaDescription="My name is Marina Landisberg. hat project is result of following a course on udemy.com led by instructo r Filip Jerga, 'awesome-nextjs-with-react-and-node-amazing-portfolio-app'",
+		metaDescription="My name is Marina Landisberg. that project is result of following a course on udemy.com led by instructo r Filip Jerga, 'awesome-nextjs-with-react-and-node-amazing-portfolio-app'",
 		canonicalPath,
 		children 
 	} = props;
