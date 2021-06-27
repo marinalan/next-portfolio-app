@@ -7,8 +7,12 @@ import { formatDate } from'@/helpers/functions';
 
 const Portfolio = ({portfolio}) => {
   const { user, isLoading } = useUser();
+	const router = useRouter();
 
-	// TODO: Provide proper stylings!!!
+	if (router.isFallback) {
+		return <h1>Your page is getting server</h1>
+	}
+
   return (
     <BaseLayout
       user={user}
@@ -24,13 +28,20 @@ const Portfolio = ({portfolio}) => {
         <div className="portfolio-detail">
 					<div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
 						<main role="main" className="inner page-cover">
-							<h1 className="cover-heading">{portfolio.title}</h1>
-							<p className="lead dates">{formatDate(portfolio.startDate)}-{formatDate(portfolio.endDate) || 'Present'}</p>
-							<p className="lead info mb-0">{portfolio.jobTitle} | {portfolio.company} | {portfolio.location}</p>
-							<p className="lead">{portfolio.description}</p>
-							<p className="lead">
-								<a href={portfolio.companyWebsite} target="_blank" className="btn btn-lg btn-secondary">Visit Company</a>
-							</p>
+							{ router.isFallback &&
+								<h1 className="cover-heading">Your page is getting server...</h1>
+							}
+							{ !router.isFallback &&
+								<>
+									<h1 className="cover-heading">{portfolio.title}</h1>
+									<p className="lead dates">{formatDate(portfolio.startDate)}-{formatDate(portfolio.endDate) || 'Present'}</p>
+									<p className="lead info mb-0">{portfolio.jobTitle} | {portfolio.company} | {portfolio.location}</p>
+									<p className="lead">{portfolio.description}</p>
+									<p className="lead">
+										<a href={portfolio.companyWebsite} target="_blank" className="btn btn-lg btn-secondary">Visit Company</a>
+									</p>
+								</>
+							}
 						</main>
 					</div>
 				</div>
@@ -60,7 +71,7 @@ export async function getStaticPaths() {
   })
 
   // false means that "not found pages" will be resolved into 404 page
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({params}) {
